@@ -1,5 +1,6 @@
 fastapi
 uvicorn
+pyjwt
 bcrypt
 python-jose
 pydantic
