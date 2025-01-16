@@ -64,3 +64,4 @@ async def predict(input_data: predection, user_id: int = Query(...)):
         connection.close()
 
     return {"model_name": input_data.model_name, "prediction": prediction}
+
