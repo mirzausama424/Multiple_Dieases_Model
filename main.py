@@ -9,7 +9,7 @@ app = FastAPI()
 
 
 # Include routers
-app.include_router(auth_router, prefix="/auth", tags=["Authentication"])
+#app.include_router(auth_router, prefix="/auth", tags=["Authentication"])
 app.include_router(predection_route, prefix="/prediction", tags=["Prediction"])
 
 # Create the necessary tables in the database

@@ -24,37 +24,59 @@ def create_users_table():
     connection.close()
 
 # Function to create the 'predection' table if it doesn't exist
-def createtable():
-    # Ensure the users table exists before creating the 'predection' and 'history' tables
-    create_users_table()
+# def createtable():
+#     # Ensure the users table exists before creating the 'predection' and 'history' tables
+#     create_users_table()
 
+#     # Get the database connection object
+#     connection = db_connection()
+#     cursor = connection.cursor()
+
+#     # Creating the 'predection' table if it doesn't already exist
+#     cursor.execute("""
+#         CREATE TABLE IF NOT EXISTS predection (
+#             id INTEGER PRIMARY KEY AUTOINCREMENT,
+#             user_id INTEGER,
+#             model_name TEXT,
+#             features TEXT,
+#             prediction TEXT,
+#             timestamp TEXT,
+#             FOREIGN KEY (user_id) REFERENCES users (id)
+#         )
+#     """)
+
+#     # Creating the 'history' table if it doesn't already exist
+#     cursor.execute("""
+#         CREATE TABLE IF NOT EXISTS history (
+#             id INTEGER PRIMARY KEY AUTOINCREMENT,
+#             user_id INTEGER,
+#             model_name TEXT,
+#             features TEXT,
+#             prediction TEXT,
+#             timestamp TEXT,
+#             FOREIGN KEY (user_id) REFERENCES users (id)
+#         )
+#     """)
+
+#     # Committing the changes to the database
+#     connection.commit()
+
+#     # Closing the database connection
+#     connection.close()
+
+def createtable():
     # Get the database connection object
     connection = db_connection()
     cursor = connection.cursor()
 
-    # Creating the 'predection' table if it doesn't already exist
+    # Creating the 'predection' table if it doesn't already exist, without 'user_id'
     cursor.execute("""
         CREATE TABLE IF NOT EXISTS predection (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
-            user_id INTEGER,
             model_name TEXT,
             features TEXT,
             prediction TEXT,
-            timestamp TEXT,
-            FOREIGN KEY (user_id) REFERENCES users (id)
-        )
-    """)
-
-    # Creating the 'history' table if it doesn't already exist
-    cursor.execute("""
-        CREATE TABLE IF NOT EXISTS history (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            user_id INTEGER,
-            model_name TEXT,
-            features TEXT,
-            prediction TEXT,
-            timestamp TEXT,
-            FOREIGN KEY (user_id) REFERENCES users (id)
+            timestamp TEXT
         )
     """)
 
