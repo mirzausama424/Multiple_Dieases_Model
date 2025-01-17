@@ -46,6 +46,35 @@ def createtable():
 
     # Closing the database connection
     connection.close()
+def add_confidence_column():
+    connection = db_connection()
+    cursor = connection.cursor()
+    try:
+        cursor.execute("""
+            ALTER TABLE predictions
+            ADD COLUMN confidence REAL
+        """)
+        connection.commit()
+        print("Added 'confidence' column to the 'predictions' table.")
+    except sqlite3.OperationalError as e:
+        print(f"Could not add 'confidence' column (might already exist): {e}")
+    finally:
+        connection.close()
+
+# Run the function to add the column
+add_confidence_column()
+def check_table_schema():
+    connection = db_connection()
+    cursor = connection.cursor()
+
+    cursor.execute("PRAGMA table_info(predictions)")
+    columns = cursor.fetchall()
+
+    connection.close()
+    return columns
+
+print(check_table_schema())
+
 
 
 # Function to create the 'predection' table if it doesn't exist
